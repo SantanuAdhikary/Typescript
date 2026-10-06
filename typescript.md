@@ -1095,24 +1095,45 @@ console.log(a2)
 
 
 ```ts
-   
-      class Animal
-      {
-          color : string = "brown"
-      }
+    
 
-      class Dog extends Animal
-      {
-          name : string = "tom"
-      }
+        class Animal
+        {
+            eat() : void{
+                console.log("this animal can eat")
+            }
 
-      let d1 = new Dog();
-      console.log(d1.name);   // tom 
-      console.log(d1.color); // brown
+            sleep():void{
+                console.log("this animal can sleep")
+            }
 
-     let a1 = new Animal();
-     console.log(a1.color);  // brown
-     console.log(a1.name);  // not possible ❌
+        }
+
+
+        class Cat extends Animal{
+
+            run():void{
+                console.log("cat can run ")
+            }
+
+            meow():void{
+                console.log("cat is meowing")
+            }
+        }
+
+
+        let a1 = new Animal()
+        a1.eat()
+        a1.sleep()
+        // a1.run();
+
+        console.log("----------------------------")
+
+        let c1 = new Cat()
+        c1.run()
+        c1.meow()
+        c1.sleep()
+        c1.eat()
 
 
 ```
@@ -1156,6 +1177,13 @@ console.log(a2)
 * when one parent class having multiple child class in the same level, that is called `Hierarchical Inheritance`
 
 ```js
+
+     class Animal
+        {
+            eat():void{
+                console.log("this animal can eat food")
+            }
+        }
 
    class Cat extends Animal
    {
@@ -1248,3 +1276,121 @@ console.log(a2)
         c2.displayParent()
 
 ```
+
+
+## Polymorphism 
+
+* Polymorphism is the combination of two words `poly` means many and `morphism` means forms.
+
+* it is an ability of an object which can undergo multiple forms.
+
+* there are two types of polymorphism. 
+
+1. compile time polymorphism 
+2. run time polymorphism 
+
+### Method Override 
+
+* it is the process of parent and child having same method but different implementation.
+
+* for method override `inheritance` is mandatory.
+
+* we can use `override` keyword infront of the method.
+
+```js
+
+   class Payment
+   {
+       pay() : void
+       {
+          console.log("pament done")
+       }
+   }
+
+   class UPI extends Payment
+   {
+       override pay():void
+       {
+         console.log("payment done by upi")
+       }
+   }
+
+   class Cash extends Payment
+   {
+       override pay():void
+       {
+         console.log("payment done through cash")
+       }
+   }
+
+   let p : Payment 
+
+   p = new UPI()
+   p.pay();       // payment done by upi
+
+   p = new Cash()
+   p.pay();    // payment done through cash
+
+```
+
+
+### Method Overloading 
+
+* it is the process of having multiple methods but same name inside one class.
+
+* here name should be same but parameters type or count should be different.
+
+* here we have to follow two steps to provide method overload 
+ 
+ i. overload signature 
+ ii. implementation signature 
+
+ ```ts
+        class Addition
+        {
+
+        // overload signature
+
+            add(a : number , b : number) : void
+            add (a:number, b: number , c:number):void 
+
+
+        // implementation signature
+            add(a:number , b:number , c ?:number)
+            {
+                if(typeof c == "undefined")
+                    console.log(a + b)
+                else
+                    console.log(a+b+c)
+            }
+        }
+
+        let a1 = new Addition()
+        a1.add(4,9);
+        a1.add(10,20,30);
+ ```
+
+
+### difference b/w method overload and override 
+
+**Method Overloading**	                    
+
+*Scope*	             
+      Happens within the same class.	            
+
+*Method Signature*	
+        Different parameter lists (types, number, or order).	
+
+*Polymorphism Type*	
+       Compile-time static binding.	          
+
+**Method Overriding**
+
+*Scope*	  
+      Happens across parent and child classes (requires inheritance).
+
+*Method Signature*  
+       Identical signature to the parent method.
+
+*Polymorphism Type*    
+        Runtime dynamic binding.
