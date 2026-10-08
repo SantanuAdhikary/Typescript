@@ -1394,3 +1394,85 @@ console.log(a2)
 
 *Polymorphism Type*    
         Runtime dynamic binding.
+
+
+## Abstraction 
+
+* Abstraction in TypeScript is the Object-Oriented Programming (OOP) principle of hiding internal implementation  and providing only the essential features of an object.
+
+* we can perform abstraction by using **abstract class** and **interface**
+
+### what is abstact class 
+
+* any class having `abstract` keyword infront of the name of class, is called as **abstract class**
+
+* we can't create any object of abstract class.
+
+* abstract class can contain both `abstract method` and `concrete method`.
+
+
+### what is abstract method 
+
+* any method having `abstract` keyword as prefix, is called as **abstract method**
+
+* `abstract method` can't have any method body / implementation 
+
+### what is concrete mehtod 
+
+* any method without `abstract` keyword is called as **concrete method** 
+
+* this method having their method body.
+
+
+### How to Achive Abstraction by using abstract class 
+
+*step 1*
+   
+   * create one class by using `abstract` keyword and inside that class take `abstract method`
+
+```ts
+
+   abstract class KFC
+   {
+       // abstract method 
+
+        abstract friedChiken(): void ; 
+
+      //  concrete method 
+
+       discount():void
+       {
+         console.log("20% discount")
+       }
+
+   }
+ ```
+
+ *step 2 :*
+   
+   * now we can't access these methods, becuase we can't create object. 
+   * for that we need **implementation class**, to provide the body of the `abstract method`
+   * for that we have to perform **inheritance**
+
+ ```ts
+       class Nexus extends KFC
+       {
+           override friedChiken(): void
+           {
+               console.log("you will get 2 plate friedChicken")
+           }
+       }
+ ```
+
+ *step 3*
+
+  * now we can create the object of the implementation class and we can access all the methods.
+
+  ```ts
+           let nexus = new Nexus();
+           nexus.friedChicken();
+           nexus.discount();
+  ```
+
+
+  #### Note : abstract class can not provide 100% abstraction, for that we need interface.
